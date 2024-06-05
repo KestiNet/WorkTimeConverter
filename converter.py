@@ -23,6 +23,7 @@ if __name__ == "__main__":
     main()
 
 
-
+#TODO: need to create conversion from decimal hours to normal hours
+#TODO: add database connection to save weekly hours
 
 
