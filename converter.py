@@ -1,3 +1,49 @@
+import json, requests
+
+file = open("SECRET.json")
+
+data = json.load(file)
+
+#Secret token
+secret = data['id']
+
+#database id
+database = data['database']
+file.close()
+
+#url
+url = 'https://api.notion.com/v1/pages'
+
+#headers
+headers = {
+    'Authorization': f'Bearer {secret}',
+    'Content-Type':'application/json',
+    'Notion-Version': '2022-06-28'
+}
+
+#Data input
+data_input = {
+	"parent": { "page_id": "e43c0844-db01-4e08-8d1f-01fcbbd52764" },
+	"properties": {
+		"title": {
+      "title": [{ "type": "text", "text": { "content": "A note from your pals at Notion" } }]
+		}
+	},
+	"children": [
+    {
+      "object": "block",
+      "type": "paragraph",
+      "paragraph": {
+        "rich_text": [{ "type": "text", "text": { "content": "You made this page using the Notion API. Pretty cool, huh? We hope you enjoy building with us." } }]
+      }
+    }
+  ]
+}
+#Check request
+
+response = requests.post(url, headers=headers,json=data_input)
+print(response.json())
+'''
 def get_worked_hours():
 
     workdays = ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday']
@@ -27,3 +73,4 @@ if __name__ == "__main__":
 #TODO: add database connection to save weekly hours
 
 
+'''
