@@ -1,4 +1,6 @@
 import json, requests
+from datetime import datetime
+
 
 file = open("SECRET.json")
 
@@ -12,7 +14,7 @@ database = data['database']
 file.close()
 
 #url
-url = 'https://api.notion.com/v1/pages'
+#url = 'https://api.notion.com/v1/pages'
 
 #headers
 headers = {
@@ -21,6 +23,29 @@ headers = {
     'Notion-Version': '2022-06-28'
 }
 
+def get_pages():
+    url = f"https://api.notion.com/v1/databases/{database}/query"
+    payload = {"page_size":100}
+    response = requests.post(url, json=payload, headers=headers)
+    data = response.json()
+    
+    with open('db.json', 'w', encoding='utf8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    results = data["results"]
+    return results
+
+pages = get_pages()
+for page in pages:
+    page_id = page["id"]
+    props = page["properties"]
+    url = props["URL"]["title"][0]["text"]["content"]
+    title = props["Title"]["rich_text"][0]["text"]["content"]
+    published = props["published"]["date"]["start"]
+    published = datetime.fromisoformat(published)
+    print(url, title, published)
+
+
+'''
 #Data input
 data_input = {
 	"parent": { "page_id": "e43c0844-db01-4e08-8d1f-01fcbbd52764" },
@@ -39,11 +64,12 @@ data_input = {
     }
   ]
 }
+'''
 #Check request
-
+'''
 response = requests.post(url, headers=headers,json=data_input)
 print(response.json())
-'''
+
 def get_worked_hours():
 
     workdays = ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday']
