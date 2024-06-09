@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 import json, requests
 
-NOTION_TOKEN = "secret_uALyWPoSeMdA1aS50enFbfzEpK2BbVt9DT3wjDx2EOl"
+NOTION_TOKEN = 
 DATABASE_ID = "0c82028703674810a06e36a3ccb1b4b4"
 
 #file = open("SECRET.json")
