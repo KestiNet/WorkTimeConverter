@@ -5,7 +5,7 @@
             "object": "page",
             "id": "3e81fb31-3194-4d8c-a411-c0a240c6326b",
             "created_time": "2024-06-07T23:02:00.000Z",
-            "last_edited_time": "2024-06-07T23:19:00.000Z",
+            "last_edited_time": "2024-06-08T23:24:00.000Z",
             "created_by": {
                 "object": "user",
                 "id": "248d4375-0b80-417b-ad6a-8c29131ca80d"
@@ -24,24 +24,13 @@
             "in_trash": false,
             "properties": {
                 "Title": {
-                    "id": "rfO%5C",
-                    "type": "multi_select",
-                    "multi_select": [
-                        {
-                            "id": "9e682913-61aa-4cff-b5d4-7d78f094b0bb",
-                            "name": "Test title",
-                            "color": "pink"
-                        }
-                    ]
-                },
-                "Published": {
-                    "id": "sluv",
+                    "id": "hvU%3A",
                     "type": "rich_text",
                     "rich_text": [
                         {
                             "type": "text",
                             "text": {
-                                "content": "8.6.2024",
+                                "content": "Test Title",
                                 "link": null
                             },
                             "annotations": {
@@ -52,10 +41,19 @@
                                 "code": false,
                                 "color": "default"
                             },
-                            "plain_text": "8.6.2024",
+                            "plain_text": "Test Title",
                             "href": null
                         }
                     ]
+                },
+                "Published": {
+                    "id": "sluv",
+                    "type": "date",
+                    "date": {
+                        "start": "2024-06-09",
+                        "end": null,
+                        "time_zone": null
+                    }
                 },
                 "URL": {
                     "id": "title",
@@ -107,14 +105,14 @@
             "in_trash": false,
             "properties": {
                 "Title": {
-                    "id": "rfO%5C",
-                    "type": "multi_select",
-                    "multi_select": []
+                    "id": "hvU%3A",
+                    "type": "rich_text",
+                    "rich_text": []
                 },
                 "Published": {
                     "id": "sluv",
-                    "type": "rich_text",
-                    "rich_text": []
+                    "type": "date",
+                    "date": null
                 },
                 "URL": {
                     "id": "title",
@@ -148,14 +146,14 @@
             "in_trash": false,
             "properties": {
                 "Title": {
-                    "id": "rfO%5C",
-                    "type": "multi_select",
-                    "multi_select": []
+                    "id": "hvU%3A",
+                    "type": "rich_text",
+                    "rich_text": []
                 },
                 "Published": {
                     "id": "sluv",
-                    "type": "rich_text",
-                    "rich_text": []
+                    "type": "date",
+                    "date": null
                 },
                 "URL": {
                     "id": "title",
@@ -165,52 +163,11 @@
             },
             "url": "https://www.notion.so/c657b059df534fb890de1dbed046b26e",
             "public_url": null
-        },
-        {
-            "object": "page",
-            "id": "cbd17b10-5a22-4790-bf22-c7a84311eb68",
-            "created_time": "2024-06-07T22:45:00.000Z",
-            "last_edited_time": "2024-06-07T23:03:00.000Z",
-            "created_by": {
-                "object": "user",
-                "id": "248d4375-0b80-417b-ad6a-8c29131ca80d"
-            },
-            "last_edited_by": {
-                "object": "user",
-                "id": "248d4375-0b80-417b-ad6a-8c29131ca80d"
-            },
-            "cover": null,
-            "icon": null,
-            "parent": {
-                "type": "database_id",
-                "database_id": "0c820287-0367-4810-a06e-36a3ccb1b4b4"
-            },
-            "archived": false,
-            "in_trash": false,
-            "properties": {
-                "Title": {
-                    "id": "rfO%5C",
-                    "type": "multi_select",
-                    "multi_select": []
-                },
-                "Published": {
-                    "id": "sluv",
-                    "type": "rich_text",
-                    "rich_text": []
-                },
-                "URL": {
-                    "id": "title",
-                    "type": "title",
-                    "title": []
-                }
-            },
-            "url": "https://www.notion.so/cbd17b105a224790bf22c7a84311eb68",
-            "public_url": null
         }
     ],
     "next_cursor": null,
     "has_more": false,
     "type": "page_or_database",
     "page_or_database": {},
-    "request_id": "7d1c7219-c3aa-4122-840d-94d9a622dd24"
+    "request_id": "d3f1e1a8-5d0d-47cb-b516-c85c7109aa51"
 }

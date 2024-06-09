@@ -1,30 +1,51 @@
+from datetime import datetime, timezone
 import json, requests
-from datetime import datetime
 
+NOTION_TOKEN = "secret_uALyWPoSeMdA1aS50enFbfzEpK2BbVt9DT3wjDx2EOl"
+DATABASE_ID = "0c82028703674810a06e36a3ccb1b4b4"
 
-file = open("SECRET.json")
+#file = open("SECRET.json")
 
-data = json.load(file)
+#data = json.load(file)
 
 #Secret token
-secret = data['id']
+#secret = data['id']
 
 #database id
-database = data['database']
-file.close()
+#database = data['database']
+#file.close()
 
 #url
-#url = 'https://api.notion.com/v1/pages'
+#url_create = "https://api.notion.com/v1/pages"
+
+
 
 #headers
 headers = {
-    'Authorization': f'Bearer {secret}',
-    'Content-Type':'application/json',
-    'Notion-Version': '2022-06-28'
+    "Authorization": "Bearer " + NOTION_TOKEN ,
+    "Content-Type":"application/json",
+    "Notion-Version": "2022-06-28"
 }
+'''
+def create_page(data:dict):
+    create_url = url_create
+    payload = {"parent": {"database_id":database}, "properties":secret}
+    res = requests.post(create_url, headers=headers, json=payload)
+    print(res.status_code)
+    return res
 
+url = "Test Url 2"
+title = "Test Title 2"
+published_date = datetime.now().astimezone(timezone.utc).isoformat()
+data = {
+    "URL":{"title": [{"text": {"content": url}}]},
+    "Title": {"rich_text": [{"text": {"content": title}}]},
+    "Published": {"date": {"start": published_date, "end":None}}
+}
+create_page(data)
+'''
 def get_pages():
-    url = f"https://api.notion.com/v1/databases/{database}/query"
+    url = f"https://api.notion.com/v1/databases/{DATABASE_ID}/query"
     payload = {"page_size":100}
     response = requests.post(url, json=payload, headers=headers)
     data = response.json()
@@ -40,7 +61,7 @@ for page in pages:
     props = page["properties"]
     url = props["URL"]["title"][0]["text"]["content"]
     title = props["Title"]["rich_text"][0]["text"]["content"]
-    published = props["published"]["date"]["start"]
+    published = props["Published"]["date"]["start"]
     published = datetime.fromisoformat(published)
     print(url, title, published)
 
