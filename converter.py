@@ -1,7 +1,12 @@
 from datetime import datetime, timezone
 import json, requests
 
+<<<<<<< HEAD
 file = open("SECRET.json")
+=======
+NOTION_TOKEN = 
+DATABASE_ID = "0c82028703674810a06e36a3ccb1b4b4"
+>>>>>>> origin/main
 
 data = json.load(file)
 
@@ -61,3 +66,7 @@ if __name__ == "__main__":
 #TODO: add database connection to save weekly hours
 
 
+<<<<<<< HEAD
+=======
+'''
+>>>>>>> origin/main
