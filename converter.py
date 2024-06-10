@@ -1,12 +1,8 @@
 from datetime import datetime, timezone
 import json, requests
 
-<<<<<<< HEAD
 file = open("SECRET.json")
-=======
-NOTION_TOKEN = 
-DATABASE_ID = "0c82028703674810a06e36a3ccb1b4b4"
->>>>>>> origin/main
+
 
 data = json.load(file)
 
@@ -51,10 +47,13 @@ def main():
     for day, hour in zip(workdays,workedHours):
         print(f"{day}: {hour} hour")
         total += hour
-    print("Weekly total: ", total)
-        
+    total_hours, total_minutes = convert_decimal_hours_to_time(total)
+    print("Weekly Total: ",total_hours,":", total_minutes)        
 
-    
+def convert_decimal_hours_to_time(decimal_hours):
+    hours = int(decimal_hours)
+    minutes = int((decimal_hours - hours) * 60)
+    return hours, minutes
 
 
     
@@ -62,11 +61,4 @@ if __name__ == "__main__":
     main()
 
 
-#TODO: need to create conversion from decimal hours to normal hours
 #TODO: add database connection to save weekly hours
-
-
-<<<<<<< HEAD
-=======
-'''
->>>>>>> origin/main
