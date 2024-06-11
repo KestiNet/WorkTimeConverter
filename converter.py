@@ -1,5 +1,12 @@
-from datetime import datetime, timezone
+import datetime
+
 import json, requests
+
+# Get the current date
+current_date = datetime.datetime.now()
+
+# Get the ISO calendar tuple (year, week number, weekday)
+week_number = current_date.isocalendar()[1]
 
 file = open("SECRET.json")
 
@@ -15,6 +22,7 @@ file.close()
 
 #url
 url_create = "https://api.notion.com/v1/pages"
+
 
 
 
@@ -48,7 +56,7 @@ def main():
         print(f"{day}: {hour} hour")
         total += hour
     total_hours, total_minutes = convert_decimal_hours_to_time(total)
-    print("Weekly Total: ",total_hours,":", total_minutes)        
+    print(f"Week {week_number} hours: {total_hours}:{total_minutes}")    
 
 def convert_decimal_hours_to_time(decimal_hours):
     hours = int(decimal_hours)
