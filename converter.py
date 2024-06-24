@@ -1,39 +1,33 @@
-import datetime
-
+# Notion Application
 import json, requests
 
-# Get the current date
-current_date = datetime.datetime.now()
 
-# Get the ISO calendar tuple (year, week number, weekday)
-week_number = current_date.isocalendar()[1]
+file = open('SECRET.json') # Opens the file
 
-file = open("SECRET.json")
+data = json.load(file) # loads the data then stores in variable called data
 
-
-data = json.load(file)
-
-#Secret token
+# Secret here:
 secret = data['id']
 
-#database id
-database = data['database']
-file.close()
+# Database information here:
+database = data['database_tasks']
 
-#url
-url_create = "https://api.notion.com/v1/pages"
+file.close() # close file
 
+url = 'https://api.notion.com/v1/pages'
 
-
-
-#headers
+# Headers
 headers = {
-    "Authorization": "Bearer " + secret,
-    "Content-Type":"application/json",
-    "Notion-Version": "2022-06-28"
+    'Authorization': f'Bearer {secret}',
+    'Content-Type': 'application/json',
+    'Notion-Version': '2021-08-16'
 }
 
 
+
+
+
+#--------------------------------------------------------------------------
 def get_worked_hours():
 
     workdays = ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday']
@@ -47,26 +41,43 @@ def get_worked_hours():
 
     return hoursWorked
 
-def main():
-    workedHours = get_worked_hours()
-    print("\nWorked hours: ")
-    workdays = ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday']
-    total = 0
-    for day, hour in zip(workdays,workedHours):
-        print(f"{day}: {hour} hour")
-        total += hour
-    total_hours, total_minutes = convert_decimal_hours_to_time(total)
-    print(f"Week {week_number} hours: {total_hours}:{total_minutes}")    
-
 def convert_decimal_hours_to_time(decimal_hours):
     hours = int(decimal_hours)
     minutes = int((decimal_hours - hours) * 60)
     return hours, minutes
 
+def main():
+    workedHours = get_worked_hours()
+    print("\nWorked hours: ")
+    workdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    total = 0
+    for day, hour in zip(workdays, workedHours):
+        print(f"{day}: {hour} hour")
+        total += hour
+    total_hours, total_minutes = convert_decimal_hours_to_time(total)
+    total_time_str = f"{int(total_hours)}:{str(int(total_minutes)).zfill(2)}"
+    print(f"Total time: {total_time_str}")
 
-    
+    # Data input
+    data_input = {
+        "parent": {"database_id": f"{database}"},
+        "properties": {
+            "Name": {
+                "Title": [
+                    {
+                        "Worked Hours": {
+                            "content": f"Total Time: {total_time_str}"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+    # Check request
+    response = requests.post(url, headers=headers, json=data_input)
+    print(response.json())
+
 if __name__ == "__main__":
     main()
 
-
-#TODO: add database connection to save weekly hours
