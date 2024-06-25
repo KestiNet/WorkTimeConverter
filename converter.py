@@ -1,4 +1,3 @@
-# Notion Application
 import json, requests
 
 
@@ -63,10 +62,10 @@ def main():
         "parent": {"database_id": f"{database}"},
         "properties": {
             "Name": {
-                "Title": [
+                "title": [
                     {
-                        "Worked Hours": {
-                            "content": f"Total Time: {total_time_str}"
+                        "text": {
+                            "content": f"{total_time_str}"
                         }
                     }
                 ]
@@ -80,4 +79,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
