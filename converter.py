@@ -59,19 +59,28 @@ def main():
 
     # Data input
     data_input = {
-        "parent": {"database_id": f"{database}"},
-        "properties": {
-            "Name": {
-                "title": [
-                    {
-                        "text": {
-                            "content": f"{total_time_str}"
-                        }
+       "parent": {"database_id": f"{database}"},
+       "properties": {
+           "Name": {
+               "title": [
+                {
+                    "text": {
+                        "content": f"{total_time_str}"
                     }
-                ]
-            }
+                }
+            ]
+        },
+        "WorkHours": {
+            "rich_text": [
+                {
+                    "text": {
+                        "content": f"{total_time_str}"
+                    }
+                }
+            ]
         }
     }
+}
 
     # Check request
     response = requests.post(url, headers=headers, json=data_input)
