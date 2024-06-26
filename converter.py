@@ -1,5 +1,6 @@
-import json, requests
-
+import json, requests, datetime
+current_date = datetime.date.today()
+iso_calendar = current_date.isocalendar()
 
 file = open('SECRET.json') # Opens the file
 
@@ -22,11 +23,7 @@ headers = {
     'Notion-Version': '2021-08-16'
 }
 
-
-
-
-
-#--------------------------------------------------------------------------
+#Get the workhours from the user
 def get_worked_hours():
 
     workdays = ['Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday']
@@ -39,13 +36,14 @@ def get_worked_hours():
         hoursWorked.append(enteredHours)
 
     return hoursWorked
-
+#Converts decimal hours to normal time
 def convert_decimal_hours_to_time(decimal_hours):
     hours = int(decimal_hours)
     minutes = int((decimal_hours - hours) * 60)
     return hours, minutes
 
 def main():
+    week_number = iso_calendar[1]
     workedHours = get_worked_hours()
     print("\nWorked hours: ")
     workdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -55,17 +53,19 @@ def main():
         total += hour
     total_hours, total_minutes = convert_decimal_hours_to_time(total)
     total_time_str = f"{int(total_hours)}:{str(int(total_minutes)).zfill(2)}"
+    sweek =str(week_number)
     print(f"Total time: {total_time_str}")
+    print(f"The current week number is: {sweek}")
 
     # Data input
     data_input = {
        "parent": {"database_id": f"{database}"},
        "properties": {
-           "Name": {
+           "Week": {
                "title": [
                 {
                     "text": {
-                        "content": f"{total_time_str}"
+                        "content": f"{sweek}"
                     }
                 }
             ]
@@ -84,7 +84,7 @@ def main():
 
     # Check request
     response = requests.post(url, headers=headers, json=data_input)
-    print(response.json())
+    #print(response.json())
 
 if __name__ == "__main__":
     main()
