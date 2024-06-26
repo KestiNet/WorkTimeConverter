@@ -42,6 +42,11 @@ def convert_decimal_hours_to_time(decimal_hours):
     minutes = int((decimal_hours - hours) * 60)
     return hours, minutes
 
+def time_to_go_home_time():
+    #TODO: implement calculator that will tell you what time you can finish work based on
+    #what time work started on Friday
+    pass
+
 def main():
     week_number = iso_calendar[1]
     workedHours = get_worked_hours()
