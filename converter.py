@@ -43,6 +43,9 @@ def convert_decimal_hours_to_time(decimal_hours):
     return hours, minutes
 
 def time_to_go_home_time():
+    friday_start_time = float(input(f"Enter the time you started work on Friday: "))
+
+
     #TODO: implement calculator that will tell you what time you can finish work based on
     #what time work started on Friday
     pass
